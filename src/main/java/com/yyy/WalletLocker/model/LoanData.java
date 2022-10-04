@@ -1,9 +1,11 @@
 package com.yyy.WalletLocker.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.yyy.WalletLocker.util.DateUtils;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @Author：yuanyao
@@ -46,18 +48,24 @@ public class LoanData implements Serializable {
     /**
      * the date of loan
      */
-    private SimpleDateFormat loanBeginDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd",timezone =
+            DateUtils.TIMEZONE)
+    private Date loanBeginDate;
 
     /**
      * ???
      */
-    private SimpleDateFormat billDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd",timezone =
+            DateUtils.TIMEZONE)
+    private Date billDate;
 
     /**
      * ??????
 
      */
-    private SimpleDateFormat repaymentDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd",timezone =
+            DateUtils.TIMEZONE)
+    private Date repaymentDate;
 
     /**
      * ??
@@ -68,13 +76,17 @@ public class LoanData implements Serializable {
     /**
      * ??????
      */
-    private SimpleDateFormat crtTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd",timezone =
+            DateUtils.TIMEZONE)
+    private Date crtTime;
 
     /**
      * ??????
 
      */
-    private SimpleDateFormat uptTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd",timezone =
+            DateUtils.TIMEZONE)
+    private Date uptTime;
 
     private static final long serialVersionUID = 1L;
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generate.BillTbDao">
-  <resultMap id="BaseResultMap" type="com.yyy.WalletLocker.model.BillTb">
+<mapper namespace="com.yyy.WalletLocker.mapper.LoanMapper">
+  <resultMap id="BaseResultMap" type="com.yyy.WalletLocker.model.LoanData">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="plat_name" jdbcType="VARCHAR" property="platName" />
     <result column="total_amount" jdbcType="DOUBLE" property="totalAmount" />
@@ -29,7 +29,7 @@
     delete from bill_tb
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.BillTb" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.LoanData" useGeneratedKeys="true">
     insert into bill_tb (plat_name, total_amount, avg_amout, 
       total_interest, avg_interest, loan_begin_date, 
       bill_date, repayment_date, period, 
@@ -39,7 +39,7 @@
       #{billDate,jdbcType=DATE}, #{repaymentDate,jdbcType=DATE}, #{period,jdbcType=TINYINT}, 
       #{crtTime,jdbcType=DATE}, #{uptTime,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.BillTb" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.LoanData" useGeneratedKeys="true">
     insert into bill_tb
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="platName != null">
@@ -112,7 +112,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yyy.WalletLocker.model.BillTb">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yyy.WalletLocker.model.LoanData">
     update bill_tb
     <set>
       <if test="platName != null">
@@ -151,7 +151,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yyy.WalletLocker.model.BillTb">
+  <update id="updateByPrimaryKey" parameterType="com.yyy.WalletLocker.model.LoanData">
     update bill_tb
     set plat_name = #{platName,jdbcType=VARCHAR},
       total_amount = #{totalAmount,jdbcType=DOUBLE},

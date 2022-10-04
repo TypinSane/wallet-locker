@@ -2,6 +2,8 @@ package com.yyy.WalletLocker.service;
 
 import com.yyy.WalletLocker.model.LoanData;
 
+import java.util.List;
+
 /**
  * @Author：yuanyao
  * @Description:
@@ -11,4 +13,10 @@ import com.yyy.WalletLocker.model.LoanData;
 public interface LoanService {
 
     int addLoanInfo(LoanData loanData);
+
+    LoanData selectLoanById(int id);
+
+    int deleteById(int id);
+
+    int updateLoanData(LoanData loanData);
 }

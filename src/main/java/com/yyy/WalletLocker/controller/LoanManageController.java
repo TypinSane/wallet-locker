@@ -26,7 +26,7 @@ public class LoanManageController {
     private LoanService loanService;
 
     @RequestMapping(method = RequestMethod.PUT)
-    public JsonResponse registerNewUser(@RequestBody LoanData loanData){
+    public JsonResponse addNewLoanData(@RequestBody LoanData loanData){
         int i = loanService.addLoanInfo(loanData);
         return i >=0 ?new JsonResponse("200"):new JsonResponse("400");
     }
