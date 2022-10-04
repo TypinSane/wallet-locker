@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyy.WalletLocker.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yyy.WalletLocker.model.User">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone_num" jdbcType="CHAR" property="phoneNum" />
+    <result column="identify_num" jdbcType="CHAR" property="identifyNum" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yyy.WalletLocker.model.User">
+    insert into user_info_tb (id, username, password, 
+      phone_num, identify_num, email, 
+      nick_name, addr, crt_time, 
+      upd_time)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phoneNum,jdbcType=CHAR}, #{identifyNum,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yyy.WalletLocker.model.User">
+    insert into user_info_tb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="identifyNum != null">
+        identify_num,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="crtTime != null">
+        crt_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=CHAR},
+      </if>
+      <if test="identifyNum != null">
+        #{identifyNum,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getAllUser" resultMap="BaseResultMap">
+    select * from user_info_tb;
+  </select>
+
+  <select id="getUserByIdAndPwd" resultType="java.lang.Integer">
+    select * from user_info_tb where username = #{username} and password = #{password};
+  </select>
+</mapper>

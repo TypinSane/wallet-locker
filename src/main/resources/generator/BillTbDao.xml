@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.BillTbDao">
+  <resultMap id="BaseResultMap" type="com.yyy.WalletLocker.model.BillTb">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="plat_name" jdbcType="VARCHAR" property="platName" />
+    <result column="total_amount" jdbcType="DOUBLE" property="totalAmount" />
+    <result column="avg_amout" jdbcType="DOUBLE" property="avgAmout" />
+    <result column="total_interest" jdbcType="DOUBLE" property="totalInterest" />
+    <result column="avg_interest" jdbcType="DOUBLE" property="avgInterest" />
+    <result column="loan_begin_date" jdbcType="DATE" property="loanBeginDate" />
+    <result column="bill_date" jdbcType="DATE" property="billDate" />
+    <result column="repayment_date" jdbcType="DATE" property="repaymentDate" />
+    <result column="period" jdbcType="TINYINT" property="period" />
+    <result column="crt_time" jdbcType="DATE" property="crtTime" />
+    <result column="upt_time" jdbcType="DATE" property="uptTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plat_name, total_amount, avg_amout, total_interest, avg_interest, loan_begin_date, 
+    bill_date, repayment_date, period, crt_time, upt_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bill_tb
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bill_tb
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.BillTb" useGeneratedKeys="true">
+    insert into bill_tb (plat_name, total_amount, avg_amout, 
+      total_interest, avg_interest, loan_begin_date, 
+      bill_date, repayment_date, period, 
+      crt_time, upt_time)
+    values (#{platName,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DOUBLE}, #{avgAmout,jdbcType=DOUBLE}, 
+      #{totalInterest,jdbcType=DOUBLE}, #{avgInterest,jdbcType=DOUBLE}, #{loanBeginDate,jdbcType=DATE}, 
+      #{billDate,jdbcType=DATE}, #{repaymentDate,jdbcType=DATE}, #{period,jdbcType=TINYINT}, 
+      #{crtTime,jdbcType=DATE}, #{uptTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yyy.WalletLocker.model.BillTb" useGeneratedKeys="true">
+    insert into bill_tb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="platName != null">
+        plat_name,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="avgAmout != null">
+        avg_amout,
+      </if>
+      <if test="totalInterest != null">
+        total_interest,
+      </if>
+      <if test="avgInterest != null">
+        avg_interest,
+      </if>
+      <if test="loanBeginDate != null">
+        loan_begin_date,
+      </if>
+      <if test="billDate != null">
+        bill_date,
+      </if>
+      <if test="repaymentDate != null">
+        repayment_date,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="crtTime != null">
+        crt_time,
+      </if>
+      <if test="uptTime != null">
+        upt_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="platName != null">
+        #{platName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="avgAmout != null">
+        #{avgAmout,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInterest != null">
+        #{totalInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="avgInterest != null">
+        #{avgInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="loanBeginDate != null">
+        #{loanBeginDate,jdbcType=DATE},
+      </if>
+      <if test="billDate != null">
+        #{billDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentDate != null">
+        #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=TINYINT},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="uptTime != null">
+        #{uptTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yyy.WalletLocker.model.BillTb">
+    update bill_tb
+    <set>
+      <if test="platName != null">
+        plat_name = #{platName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="avgAmout != null">
+        avg_amout = #{avgAmout,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInterest != null">
+        total_interest = #{totalInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="avgInterest != null">
+        avg_interest = #{avgInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="loanBeginDate != null">
+        loan_begin_date = #{loanBeginDate,jdbcType=DATE},
+      </if>
+      <if test="billDate != null">
+        bill_date = #{billDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentDate != null">
+        repayment_date = #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=TINYINT},
+      </if>
+      <if test="crtTime != null">
+        crt_time = #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="uptTime != null">
+        upt_time = #{uptTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yyy.WalletLocker.model.BillTb">
+    update bill_tb
+    set plat_name = #{platName,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DOUBLE},
+      avg_amout = #{avgAmout,jdbcType=DOUBLE},
+      total_interest = #{totalInterest,jdbcType=DOUBLE},
+      avg_interest = #{avgInterest,jdbcType=DOUBLE},
+      loan_begin_date = #{loanBeginDate,jdbcType=DATE},
+      bill_date = #{billDate,jdbcType=DATE},
+      repayment_date = #{repaymentDate,jdbcType=DATE},
+      period = #{period,jdbcType=TINYINT},
+      crt_time = #{crtTime,jdbcType=DATE},
+      upt_time = #{uptTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

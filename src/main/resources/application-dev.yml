@@ -1,0 +1,33 @@
+server:
+  servlet:
+    context-path: /walletlocker
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/walletlocker_main_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    platform: mysql
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      filters: stat,wall,log4j
+      time-between-eviction-runs-millis: 30000
+      validation-query: SELECT1FROMDUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filter:
+        stat:
+          log-slow-sql: true
+
+  flyway:
+    baseline-on-migrate: true
+    url: jdbc:mysql://127.0.0.1:3306/walletlocker_main_db
+    user: root
+    password: 123456
+
